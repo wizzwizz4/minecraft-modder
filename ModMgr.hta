@@ -1,8 +1,30 @@
 <html>
 	<head>
 		<title>Mod Manager</title>
+		<script language="VBScript" type="text/vbscript" src="fileMgr.vbs"></script>
 	</head>
 	<body>
-		
+		<h1>Mod Manager</h1>
+		<h3 onclick="reload()">Click to refresh lists</h3>
+		<h2>Enabled Mods</h2>
+		<div id="enabledMods"></div>
+		<h2>Disabled Mods</h2>
+		<div id="disabledMods"></div>
+		<script language="JScript" type="text/jscript">
+			function reload() {
+				var modsList = getMods();
+				var modsText = "";
+				for (var f in modsList) {
+					modsText = modsText + f + "<span class='Disable' onclick='DisableMod(\"" + f + "\")'>Click to disable</span><br />"
+				}
+				var unmodsList = getUnMods();
+				var unmodsText = "";
+				for (var f in modsList) {
+					unmodsText = unmodsText + f + "<span class='Enable' onclick='EnableMod(\"" + f + "\")'>Click to enable</span><br />"
+				}
+				enabledMods.innerHTML = modsText;
+				disabledMods.innerHTML = unmodsText;
+			}
+		</script>
 	</body>
 </html>
